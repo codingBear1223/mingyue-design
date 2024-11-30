@@ -1,0 +1,87 @@
+@mixin button-size($padding-x, $padding-y, $font-size, $border-radius) {
+    padding: $padding-y $padding-x;
+    font-size: $font-size;
+    border-radius: $border-radius;
+}
+@mixin button-style(
+    $background,
+    $border,
+    $color,
+    $hover-background: lighten($background, 7.5%), //scss 的内置函数
+    $hover-border: lighten($border, 10%),
+){
+    color: $color;
+    background: $background;
+    border-color: $border;
+    &:hover {
+        background: $hover-background;
+        border-color: $hover-border;
+    }
+    &:focus, &.focus {
+        background: $hover-background;
+        border-color: $hover-border;
+    }
+    &:disabled, &.disabled {
+        background: $background;
+        border-color: $border;
+    }
+}
+.btn-link {
+    color: $btn-link-color;
+    font-weight: $font-weight-normal;
+    text-decoration: $link-decoration;
+    box-shadow: none;
+    &:hover {
+        color: $btn-link-hover-color;
+        text-decoration: $link-hover-decoration;
+    }
+    &:focus, &.focus {
+        text-decoration: $link-hover-decoration;
+        color: $btn-link-hover-color;
+    }
+    &:disabled, &.disabled {
+        color: $btn-link-disabled-color;
+    }
+}
+
+@mixin alert-type($padding-x, $padding-y, $title-font-size, $description-font-size, $border-radius, $width, $height, $background, $color) {
+    padding: $padding-y $padding-x;
+    border-radius: $border-radius;
+    width: $width;
+    height: $height;
+    background: $background;
+    color: $color;
+    h3 {
+        font-size: $title-font-size;
+    }
+    p {
+        font-size: $description-font-size;
+    }
+}
+
+@mixin zoom-animation(
+  $direction: 'top',
+  $scaleStart: scaleY(0),
+  $scaleEnd: scaleY(1),
+  $origin: center top,
+) {
+  .zoom-in-#{$direction}-enter {
+    opacity: 0;
+    transform: $scaleStart;
+  }
+  .zoom-in-#{$direction}-enter-active {
+    opacity: 1;
+    transform: $scaleEnd;
+    transition: transform 300ms cubic-bezier(0.23, 1, 0.32, 1) 100ms, opacity 300ms cubic-bezier(0.23, 1, 0.32, 1) 100ms;
+    transform-origin: $origin
+  }
+  .zoom-in-#{$direction}-exit {
+    opacity: 1;
+  }
+  .zoom-in-#{$direction}-exit-active {
+    opacity: 0;
+    transform: $scaleStart;
+    transition: transform 300ms cubic-bezier(0.23, 1, 0.32, 1) 100ms, opacity 300ms cubic-bezier(0.23, 1, 0.32, 1) 100ms;
+    transform-origin: $origin;
+  }
+}

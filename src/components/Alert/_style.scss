@@ -1,0 +1,42 @@
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* 半透明黑色遮罩，用于遮挡背景内容 */
+    justify-content: center;
+    align-items: center;
+    z-index: 999; /* 确保遮罩层在页面元素上方 */
+
+}
+.disabled {
+    display: none;
+  }
+
+.alert {
+    margin: 0 auto;
+    background-color: $primary;
+    padding:$alert-padding-x, $alert-padding-y;
+    border-radius: $alert-border-radius;
+    box-shadow: $alert-box-shadow;
+    width: $alert-width;
+    text-align: center;
+}
+.alert-success {
+  @include alert-type($alert-padding-x, $alert-padding-y, $alert-title-font-size, $alert-description-font-size,$alert-border-radius, $alert-width, $alert-height, $primary, $white);
+}
+.alert-danger {
+    @include alert-type($alert-padding-x, $alert-padding-y, $alert-title-font-size, $alert-description-font-size,$alert-border-radius, $alert-width, $alert-height, $danger, $white);
+  }
+.alert-warning {
+    @include alert-type($alert-padding-x, $alert-padding-y, $alert-title-font-size, $alert-description-font-size,$alert-border-radius, $alert-width, $alert-height, $warning, $white);
+  }  
+
+.close-btn {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    font-size: $alert-close-btn-size;
+    cursor: pointer;
+}

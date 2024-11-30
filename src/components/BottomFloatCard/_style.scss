@@ -1,0 +1,18 @@
+@each $key, $value in $theme-colors {
+    .bottom-float-card-#{$key} {
+        background-color: $value;
+    }
+}
+
+.bottom-float-card {
+    position: fixed;
+    left: 0;
+    right: 0;
+    overflow-y: auto;
+    z-index: 1000;
+    transition: transform 0.3s ease;
+}
+.bottom-float-card-hidden {
+    transform: translateY(100%);
+}
+
