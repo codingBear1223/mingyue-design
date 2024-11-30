@@ -300,6 +300,30 @@ $alert-font-size:  $font-size-base !default;
 $alert-title-font-size:  $font-size-base * 1.25 !default;
 $alert-description-font-size:  $font-size-base * 0.875 !default;
 
+$input-margin: 4px;
+$input-prefix-color: $gray-400;
+$input-suffix-color: $gray-400;
+$input-prefix-size: 14px;
+$input-suffix-size: 14px;
+$input-padding-y: 2px;
+$input-padding-x: 4px;
+$input-width-small: 150px;
+$input-width-middle: 200px;
+$input-width-large: 250px;
+$input-height-small: 36px;
+$input-height-middle: 40px;
+$input-height-large: 44px;
+$input-fix-height-small: 36px;
+$input-fix-height-middle: 40px;
+$input-fix-height-large: 44px;
+$input-padding-sm: 4px $input-padding-x-sm;
+$input-padding-middle: 6px $input-padding-x;
+$input-padding-large: 8px $input-padding-x-lg;
+$input-border-color-hover: $primary;
+$input-border-color: $gray-400;
+$input-border-color-focus: $primary;
+$input-border-radius: $border-radius;
+
 $theme-colors: 
 (
   "primary":    $primary,

@@ -7,6 +7,7 @@ import SubMenu from "./components/Menu/subMenu";
 import Icon from "./components/Icon/icon";
 import BottomFloatCard from "./components/BottomFloatCard";
 import Transition from "./components/Transition/transition";
+import Input from "./components/Input/input";
 
 function App() {
   const [show, setShow] = useState(false);
@@ -24,6 +25,18 @@ function App() {
         >
           click
         </Button>
+        <p></p>
+        <Input
+          placeholder="请输入内容"
+          size="large"
+          //append="hello"
+          icon={{ icon: "arrow-down", theme: "primary", size: "1x" }}
+        />
+        <p></p>
+        <Input placeholder="请输入内容" size="middle" append=".com" />
+        <p></p>
+        <Input placeholder="请输入内容" size="small" prepend="https://" />
+
         <Menu
           defaultIndex="0"
           onSelect={(index) => alert(index)}

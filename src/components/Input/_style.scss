@@ -1,0 +1,81 @@
+.mingyue-input {
+    height: $input-height-middle;
+    padding: $input-padding-middle;
+    font-size: $font-size-base;
+    border: 1px solid $input-border-color;
+  &:hover {
+    border-color: $input-border-color-hover;
+  }
+}
+.input-small {
+  width: $input-width-small;
+  height: $input-height-small;
+  line-height: $input-height-small;
+}
+.input-middle {
+  width: $input-width-middle;
+  height: $input-height-middle;
+  line-height: $input-height-middle;
+}
+.input-large {
+  width: $input-width-large;
+  height: $input-height-large;
+  line-height: $input-height-large;
+}
+.wrapper {
+  display: flex;
+  align-items: center;
+}
+.input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.input-prefix {
+  font-size: $input-prefix-size;
+  padding: 0 $input-padding-x;
+  border: 1px solid $input-border-color;
+  border-right: none;
+  background-color: $input-prefix-color;
+}
+.input-prefix-middle {
+    height: $input-fix-height-middle;
+    line-height: $input-fix-height-middle;
+}
+.input-prefix-large {
+    height: $input-fix-height-large;
+    line-height: $input-fix-height-large;
+}
+.input-prefix-small {
+    height: $input-fix-height-small;
+    line-height: $input-fix-height-small;
+}
+.input-suffix-middle {
+    height: $input-fix-height-middle;
+    line-height: $input-fix-height-middle;
+}
+.input-suffix-large {
+    height: $input-fix-height-large;
+    line-height: $input-fix-height-large;
+}
+.input-suffix-small {
+    height: $input-fix-height-small;
+    line-height: $input-fix-height-small;
+}
+.input-suffix{
+  font-size: $input-suffix-size;
+  padding: 0 $input-padding-x;
+  border: 1px solid $input-border-color;
+  border-left: none;
+  background-color: $input-suffix-color;
+}
+
+.input-icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
