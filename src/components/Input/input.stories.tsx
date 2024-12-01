@@ -49,7 +49,7 @@ export const Large: StoryObj<typeof meta> = {
 export const WithIcon: StoryObj<typeof meta> = {
   args: {
     icon: {
-      icon: "arrow-down",
+      icon: "calendar",
       theme: "primary",
       size: "1x",
     },
@@ -72,15 +72,16 @@ export const WithAppend: StoryObj<typeof meta> = {
 
 export const ControlledInput: StoryObj<typeof meta> = {
   args: {
-    value: "test",
+    defaultValue: "test",
   },
   render: (args) => {
-    const [value, setValue] = useState(args.value);
+    const [value, setValue] = useState("");
 
     return (
       <Input
         {...args}
         value={value}
+        defaultValue={args.value}
         onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
           setValue(e.target.value)
         }

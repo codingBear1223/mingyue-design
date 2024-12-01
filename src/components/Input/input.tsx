@@ -11,6 +11,8 @@ export interface InputProps
   prepend?: string | React.ReactNode;
   append?: string | React.ReactNode;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  value?: string;
+  defaultValue?: string;
 }
 
 const Input: React.FC<InputProps> = (props) => {
@@ -36,6 +38,12 @@ const Input: React.FC<InputProps> = (props) => {
   const iconClasses = classNames("input-icon", {
     [`input-icon-${size}`]: size,
   });
+  if ("value" in props) {
+    delete restProps.defaultValue;
+    if (typeof restProps.value === "undefined" || restProps.value === null) {
+      restProps.value = "";
+    }
+  }
 
   return (
     <div className="wrapper">

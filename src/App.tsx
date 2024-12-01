@@ -33,7 +33,12 @@ function App() {
           icon={{ icon: "arrow-down", theme: "primary", size: "1x" }}
         />
         <p></p>
-        <Input placeholder="请输入内容" size="middle" append=".com" />
+        <Input
+          placeholder="请输入内容"
+          size="middle"
+          append=".com"
+          defaultValue="test"
+        />
         <p></p>
         <Input placeholder="请输入内容" size="small" prepend="https://" />
 
