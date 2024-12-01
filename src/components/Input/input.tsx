@@ -10,6 +10,7 @@ export interface InputProps
   icon?: IconProps;
   prepend?: string | React.ReactNode;
   append?: string | React.ReactNode;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 const Input: React.FC<InputProps> = (props) => {

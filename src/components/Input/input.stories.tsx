@@ -1,4 +1,5 @@
 import { StoryObj, Meta } from "@storybook/react";
+import { useState, useEffect } from "react";
 import { action } from "@storybook/addon-actions";
 import Input from "./input";
 
@@ -66,5 +67,27 @@ export const WithAppend: StoryObj<typeof meta> = {
   args: {
     append: ".com",
     placeholder: "请输入内容",
+  },
+};
+
+export const ControlledInput: StoryObj<typeof meta> = {
+  args: {
+    value: "test",
+  },
+  render: (args) => {
+    const [value, setValue] = useState(args.value);
+
+    return (
+      <Input
+        {...args}
+        value={value}
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+          setValue(e.target.value)
+        }
+        onBlur={() => {
+          alert(value);
+        }}
+      />
+    );
   },
 };
