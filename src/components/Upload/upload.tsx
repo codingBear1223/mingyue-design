@@ -2,6 +2,7 @@ import React, { useRef, useState } from "react";
 import Button, { ButtonType } from "../Button/button";
 import axios, { AxiosProgressEvent } from "axios";
 import UploadList from "./uploadList";
+import Dragger from "./dragger";
 interface UploadProps {
   action: string; // 上传的地址
   onProgress?: (percentage: number, file: File) => void; // 上传进度
@@ -18,6 +19,7 @@ interface UploadProps {
   accept?: string; // 接受的文件类型
   multiple?: boolean; // 是否支持多文件上传
   drag?: boolean; // 是否支持拖拽上传
+  children?: React.ReactNode; // 子组件
 }
 
 export interface UploadFile {
@@ -49,6 +51,7 @@ const Upload: React.FC<UploadProps> = (props) => {
     accept,
     multiple,
     drag,
+    children,
   } = props;
   const [fileList, setFileList] = useState<UploadFile[]>(defaultFileList || []);
 
@@ -154,18 +157,39 @@ const Upload: React.FC<UploadProps> = (props) => {
   console.log("fileList", fileList);
   return (
     <div className="mingyue-upload">
-      <Button btnType={ButtonType.Primary} onClick={handleClick}>
-        上传文件
-      </Button>
-      <input
-        type="file"
-        className="mingyue-upload-input"
-        style={{ display: "none" }}
-        ref={inputRef}
-        onChange={handleChange}
-        accept={accept}
-        multiple={multiple}
-      />
+      {!drag && (
+        <Button btnType={ButtonType.Primary} onClick={handleClick}>
+          上传文件
+        </Button>
+      )}
+      {drag ? (
+        <div
+          className="mingyue-upload-input-wrapper"
+          onClick={handleClick}
+          style={{ display: "inline-block" }}
+        >
+          <Dragger onFile={uploadFiles}>{children}</Dragger>
+          <input
+            type="file"
+            className="mingyue-upload-input"
+            style={{ display: "none" }}
+            ref={inputRef}
+            onChange={handleChange}
+            accept={accept}
+            multiple={multiple}
+          />
+        </div>
+      ) : (
+        <input
+          type="file"
+          className="mingyue-upload-input"
+          style={{ display: "none" }}
+          ref={inputRef}
+          onChange={handleChange}
+          accept={accept}
+          multiple={multiple}
+        />
+      )}
       <UploadList
         fileList={defaultFileList || []}
         onRemove={onRemove || (() => {})}

@@ -1,7 +1,7 @@
 import { Meta, StoryObj } from "@storybook/react";
 import Upload, { UploadFile } from "./upload";
 import { resolve } from "path";
-
+import Icon from "../Icon/icon";
 const meta = {
   title: "Example/Upload",
   parameters: {
@@ -123,6 +123,71 @@ export const BasicUpload: Story = {
         withCredentials={true}
         defaultFileList={defaultFileList}
       />
+    );
+  },
+};
+export const DragUpload: Story = {
+  args: {},
+  render: (args) => {
+    const onSuccess = (res: any, file: File) => {
+      console.log(res, file);
+      alert("上传成功");
+    };
+    const onProgress = (percentage: number, file: File) => {
+      console.log(percentage, file);
+    };
+    const onError = (err: any, file: File) => {
+      console.log(err, file);
+      alert("上传失败");
+    };
+    const beforeUpload = (file: File) => {
+      if (Math.round(file.size / 1024) > 50) {
+        alert("文件大小不能超过50kb");
+        return false;
+      }
+      return true;
+    };
+
+    const beforeUploadPromise = (file: File) => {
+      return new Promise<File>((resolve, reject) => {
+        if (Math.round(file.size / 1024) > 50) {
+          alert("文件大小不能超过50kb");
+          reject(file);
+        }
+        const newFile = new File([file], "success.png", { type: file.type });
+        resolve(newFile);
+      });
+    };
+    const onChange = (file: File) => {
+      console.log("onChange", file);
+    };
+    return (
+      <Upload
+        action="https://jsonplaceholder.typicode.com/posts"
+        onSuccess={onSuccess}
+        onProgress={onProgress}
+        onError={onError}
+        beforeUpload={beforeUploadPromise}
+        onChange={onChange}
+        name="mingyuetest.png"
+        data={{ token: "1234567890" }}
+        withCredentials={true}
+        drag
+      >
+        <div
+          style={{
+            padding: "20px 0",
+            border: "1px dashed #ccc",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
+        >
+          <Icon icon="upload" size="5x" theme="secondary" />
+          <br />
+          <p>将文件拖到此处</p>
+        </div>
+      </Upload>
     );
   },
 };

@@ -28,3 +28,7 @@
 .file-name-success {
   color: $green;
 }
+.is-dragover {
+  border: 2px dashed $primary;
+  background-color: $gray-100;
+}
