@@ -335,3 +335,10 @@ $theme-colors:
   "light":      $light,
   "dark":       $dark
 );
+
+// progress
+$progress-bar-height: 15px;
+$progress-bar-radius: 50px;
+$progress-bar-color: $white !default;
+$progress-bar-transition: width .6s ease !default;
+$progress-font-size: $font-size-base * .75 !default;

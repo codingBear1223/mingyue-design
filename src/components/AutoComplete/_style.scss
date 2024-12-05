@@ -1,0 +1,10 @@
+.mingyue-suggestion-list {
+  list-style: none;
+}
+.mingyue-suggestion-item {
+    color: $gray-600;
+  }
+.mingyue-suggestion-item-is-active {
+  background-color: $primary;
+  color: $white;
+}

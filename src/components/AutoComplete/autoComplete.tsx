@@ -1,7 +1,9 @@
 import Input, { InputProps } from "../Input/input";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Icon from "../Icon/icon";
 import useDebounce from "../../hooks/useDebounce";
+import classNames from "classnames";
+import useClickOutside from "../../hooks/useClickOutside";
 export interface DataSourceType {
   value: string;
 }
@@ -26,10 +28,16 @@ const AutoComplete: React.FC<AutoCompleteProps> = (props) => {
   const [inputValue, setInputValue] = useState(value);
   const [suggestions, setSuggestions] = useState<Suggest<any>[]>([]);
   const [loading, setLoading] = useState(false);
+  const [highlightIndex, setHighlightIndex] = useState(-1);
   const debouncedValue = useDebounce(inputValue, 300);
+  const triggerRef = useRef<boolean>(false);
+  const componentRef = useRef<HTMLDivElement>(null);
+  useClickOutside(componentRef, () => {
+    setSuggestions([]);
+  });
 
   useEffect(() => {
-    if (debouncedValue) {
+    if (debouncedValue && triggerRef.current) {
       const results = fetchSuggestions(debouncedValue);
       if (results instanceof Promise) {
         setLoading(true);
@@ -47,6 +55,7 @@ const AutoComplete: React.FC<AutoCompleteProps> = (props) => {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value.trim();
+    triggerRef.current = true;
     setInputValue(value);
   };
 
@@ -54,30 +63,71 @@ const AutoComplete: React.FC<AutoCompleteProps> = (props) => {
     setInputValue(item.value);
     setSuggestions([]);
     onSelect && onSelect(item);
+    triggerRef.current = false;
   };
 
   const generateDropDown = () => {
     return (
-      <ul>
-        {suggestions.map((item, index) => (
-          <li
-            key={index}
-            onClick={() => {
-              handleChangeValue(item);
-            }}
-          >
-            {renderOption ? renderOption(item) : item.value}
-          </li>
-        ))}
+      <ul className="mingyue-suggestion-list">
+        {suggestions.map((item, index) => {
+          const dropDownClass = classNames("mingyue-suggestion-item", {
+            "mingyue-suggestion-item-is-active": highlightIndex === index,
+          });
+          return (
+            <li
+              key={index}
+              className={dropDownClass}
+              onClick={() => {
+                handleChangeValue(item);
+              }}
+            >
+              {renderOption ? renderOption(item) : item.value}
+            </li>
+          );
+        })}
       </ul>
     );
   };
 
-  console.log("666", restProps);
+  const highlight = (index: number) => {
+    console.log("index", index);
+    if (index < 0) index = 0;
+    if (index > suggestions.length - 1) index = suggestions.length - 1;
+    setHighlightIndex(index);
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    console.log("e.key", e.key);
+    switch (e.key) {
+      case "Enter":
+        if (suggestions[highlightIndex]) {
+          setHighlightIndex(-1);
+          handleChangeValue(suggestions[highlightIndex]);
+        }
+        break;
+      case "ArrowUp":
+        highlight(highlightIndex - 1);
+        break;
+      case "ArrowDown":
+        highlight(highlightIndex + 1);
+        break;
+      case "Escape":
+        setSuggestions([]);
+        setHighlightIndex(-1);
+        break;
+      default:
+        break;
+    }
+  };
 
   return (
-    <div className="mingyue-auto-complete">
-      <Input onChange={handleChange} value={inputValue} {...restProps} />
+    <div className="mingyue-auto-complete" ref={componentRef}>
+      <Input
+        onChange={handleChange}
+        onKeyDown={handleKeyDown}
+        value={inputValue}
+        {...restProps}
+      />
       {loading && (
         <ul>
           <Icon icon="spinner" spin />
