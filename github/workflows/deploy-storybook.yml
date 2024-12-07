@@ -20,4 +20,4 @@ jobs:
       - uses: JamesIves/github-pages-deploy-action@v4 # 更新到最新版本
         with:
           branch: gh-pages
-          folder: storybook-static
+          folder: storybook-static # 指定静态文件夹

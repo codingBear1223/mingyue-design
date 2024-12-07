@@ -19,6 +19,10 @@ const config = {
     defaultName: "Docs",
   },
   staticDirs: ["../public"],
+  viteFinal: async (config) => {
+    config.base = "/mingyue-design/";
+    return config;
+  },
 };
 
 export default config;
