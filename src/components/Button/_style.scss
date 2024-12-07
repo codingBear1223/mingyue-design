@@ -1,3 +1,6 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixin' as *;
+
 .btn {
     position: relative;
     display: inline-block;
@@ -39,5 +42,5 @@
 }
 
 .btn-default {
-    @include button-style($white, $gray-400, $body-color, $white, $primary);
+    @include button-style($white, $gray-400, $body-color);
 }

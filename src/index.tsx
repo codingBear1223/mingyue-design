@@ -1,19 +1,12 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import "./styles/index.scss";
-import App from "./App";
-import reportWebVitals from "./reportWebVitals";
-
-const root = ReactDOM.createRoot(
-  document.getElementById("root") as HTMLElement
-);
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+export { default as Button } from "./components/Button/button";
+export { default as Icon } from "./components/Icon/icon";
+export { default as Upload } from "./components/Upload/upload";
+export { default as UploadList } from "./components/Upload/uploadList";
+export { default as Dragger } from "./components/Upload/dragger";
+export { default as Progress } from "./components/Progress/progress";
+export { default as Alert } from "./components/Alert/alert";
+export { default as Input } from "./components/Input/input";
+export { default as AutoComplete } from "./components/AutoComplete/autoComplete";
+export { default as Menu } from "./components/Menu/menu";
+export { default as SubMenu } from "./components/Menu/subMenu";
+export { default as MenuItem } from "./components/Menu/menuItem";

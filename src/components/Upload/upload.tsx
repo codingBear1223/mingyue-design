@@ -158,7 +158,7 @@ const Upload: React.FC<UploadProps> = (props) => {
   return (
     <div className="mingyue-upload">
       {!drag && (
-        <Button btnType={ButtonType.Primary} onClick={handleClick}>
+        <Button btnType="primary" onClick={handleClick}>
           上传文件
         </Button>
       )}

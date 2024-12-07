@@ -27,14 +27,14 @@ const meta = {
   argTypes: {
     btnType: {
       control: "select",
-      defaultValue: ButtonType.Default,
-      options: Object.values(ButtonType),
+      defaultValue: "default",
+      options: ["primary", "default", "danger", "link"],
       description: "按钮类型",
     },
     size: {
       control: "select",
-      defaultValue: ButtonSize.Large,
-      options: Object.values(ButtonSize),
+      defaultValue: "large",
+      options: ["large", "small"],
       description: "按钮大小",
     },
     disabled: {
@@ -61,7 +61,7 @@ type Story = StoryObj<typeof meta>;
 // More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
 export const Primary: Story = {
   args: {
-    btnType: ButtonType.Primary,
+    btnType: "primary",
     children: "Button",
     onClick: (e: React.MouseEvent) => {
       action("primary-button-clicked")(e);
@@ -79,28 +79,28 @@ export const Secondary: Story = {
 
 export const Large: Story = {
   args: {
-    size: ButtonSize.Large,
+    size: "large",
     children: "Button",
   },
 };
 
 export const Small: Story = {
   args: {
-    size: ButtonSize.Small,
+    size: "small",
     children: "Button",
   },
 };
 
 export const Link: Story = {
   args: {
-    btnType: ButtonType.Link,
+    btnType: "link",
     children: "Button",
   },
 };
 
 export const Danger: Story = {
   args: {
-    btnType: ButtonType.Danger,
+    btnType: "danger",
     children: "Button",
   },
 };

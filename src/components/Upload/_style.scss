@@ -1,3 +1,6 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixin' as *;
+
 .upload-list {
   list-style: none;
   width: 300px;

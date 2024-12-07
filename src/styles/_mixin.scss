@@ -1,3 +1,6 @@
+@use 'variables' as *;
+@use "sass:color";
+
 @mixin button-size($padding-x, $padding-y, $font-size, $border-radius) {
     padding: $padding-y $padding-x;
     font-size: $font-size;
@@ -7,9 +10,9 @@
     $background,
     $border,
     $color,
-    $hover-background: lighten($background, 7.5%), //scss 的内置函数
-    $hover-border: lighten($border, 10%),
-){
+) {
+    $hover-background: color.adjust($background, $lightness: 7.5%);
+    $hover-border: color.adjust($border, $lightness: 10%);
     color: $color;
     background: $background;
     border-color: $border;

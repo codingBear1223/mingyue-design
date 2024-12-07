@@ -1,3 +1,5 @@
+@use 'variables' as *;  // 使用 as * 可以不带命名空间访问变量
+
 // stylelint-disable at-rule-no-vendor-prefix, declaration-no-important, selector-no-qualifying-type, property-no-vendor-prefix
 
 // Reboot
